@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evion Jimerson — Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header class="nav">
+        <div class="container">
+            <div class="brand">Evion Jimerson</div>
+            <nav>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+                <a class="btn" href="Evion_Jimerson_Resume.pdf" target="_blank">Resume</a>
+                <button id="themeToggle" class="icon-btn">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Cybersecurity-Minded Full-Stack Engineer</h1>
+            <p>Focused on secure systems, front- and back-end development, and practical problem solving. NVIDIA Ignite
+                alum.</p>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>NVIDIA-Style GPU Dashboard</h3>
+                    <p>Built a JWT-protected React + Flask dashboard with Docker, showing live GPU stats.</p>
+                </article>
+                <article class="card">
+                    <h3>Network Security Tool</h3>
+                    <p>Flask + React tool that checks HTTP security headers, DNS, and top-10 ports.</p>
+                </article>
+                <article class="card">
+                    <h3>Portfolio Website</h3>
+                    <p>This responsive site built with HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Experience</h2>
+            <p><b>NVIDIA Ignite — Summer Bridge (2024):</b> Learned secure API design, Dockerization, and full-stack
+                integration. Built projects combining React + Flask.</p>
+            <p><b>Dollar General — Assistant Manager:</b> Led daily operations, improved inventory accuracy by 12%,
+                managed a team, and ensured smooth workflows.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills & Coursework</h2>
+            <p><b>Technical:</b> React, Flask, JWT, Docker, Git, Networking Basics</p>
+            <p><b>Languages:</b> Python, JavaScript, HTML, CSS</p>
+            <p><b>Relevant Coursework:</b> Programming Paradigms, Operating Systems, Engineering Probability &
+                Statistics</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p>GitHub: <a href="https://github.com/yourgithub" target="_blank">github.com/yourgithub</a></p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">© <span id="y"></span> Evion Jimerson</div>
+    </footer>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
