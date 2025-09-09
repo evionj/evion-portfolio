@@ -6,33 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Evion Jimerson — Portfolio</title>
     <meta name="description"
-        content="Portfolio of Evion Jimerson — Junior CS student focusing on software engineering & cybersecurity." />
+        content="Portfolio of Evion Jimerson — Junior CS student focused on software engineering and cybersecurity." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="assets/favicon.png" />
+    <meta name="theme-color" content="#0f1115" />
     <style>
         :root {
-            /* Earthy, minimal palette */
+            /* Palette */
             --bg: #0f1115;
-            /* near-black */
             --bg-soft: #141821;
-            /* soft panel */
             --text: #e5e7eb;
-            /* light text */
             --muted: #a7b0be;
-            /* muted text */
             --brand: #7bd389;
-            /* sage/green */
             --brand-2: #9bb8ed;
-            /* slate blue accent */
             --accent: #f0d27a;
-            /* warm sand */
             --border: #232838;
-            /* border */
             --shadow: 0 10px 30px rgba(0, 0, 0, .35);
             --radius: 16px;
-            --radius-sm: 12px;
             --radius-lg: 24px;
             --maxw: 1150px;
             --speed: 250ms;
@@ -49,10 +42,11 @@
 
         body {
             margin: 0;
-            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
             color: var(--text);
-            background: radial-gradient(1200px 800px at 80% -10%, rgba(123, 211, 137, 0.12), transparent 60%),
-                radial-gradient(900px 600px at -10% 10%, rgba(155, 184, 237, 0.10), transparent 55%),
+            background:
+                radial-gradient(1200px 800px at 80% -10%, rgba(123, 211, 137, .12), transparent 60%),
+                radial-gradient(900px 600px at -10% 10%, rgba(155, 184, 237, .10), transparent 55%),
                 var(--bg);
             line-height: 1.6;
             overflow-x: hidden;
@@ -64,8 +58,8 @@
         }
 
         img {
-            max-width: 100%;
             display: block;
+            max-width: 100%;
         }
 
         .container {
@@ -73,7 +67,7 @@
             margin-inline: auto;
         }
 
-        /* Header/Nav */
+        /* Header / Nav */
         header {
             position: sticky;
             top: 0;
@@ -130,62 +124,8 @@
             transform: translateY(-1px);
         }
 
-        /* Dropdown */
-        .menu {
-            position: relative;
-        }
-
-        .menu-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .chev {
-            width: 10px;
-            height: 10px;
-            border: solid var(--muted);
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-            transition: transform var(--speed);
-        }
-
-        .menu[aria-expanded="true"] .chev {
-            transform: rotate(-135deg);
-        }
-
-        .menu-panel {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 0;
-            background: var(--bg-soft);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            min-width: 240px;
-            padding: 8px;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-8px);
-            transition: opacity var(--speed), transform var(--speed);
-        }
-
-        .menu[aria-expanded="true"] .menu-panel {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        .menu-panel a {
-            display: block;
-            padding: 10px 12px;
-            border-radius: 8px;
-            color: var(--text);
-        }
-
-        .menu-panel a:hover {
-            background: rgba(123, 211, 137, .12);
+        .menu-toggle {
+            display: none;
         }
 
         /* Buttons */
@@ -212,10 +152,15 @@
             border-color: rgba(123, 211, 137, .55);
         }
 
+        .btn.small {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 10px;
+        }
+
         /* Hero */
         .hero {
             padding: 64px 0 40px;
-            position: relative;
         }
 
         .pill {
@@ -260,7 +205,7 @@
 
         .kpis {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 14px;
             margin-top: 14px;
         }
@@ -274,9 +219,8 @@
         }
 
         .kpi .num {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
-            letter-spacing: .3px;
         }
 
         .kpi .lbl {
@@ -284,7 +228,7 @@
             color: var(--muted);
         }
 
-        /* Section */
+        /* Sections */
         section {
             padding: 60px 0;
             border-top: 1px dashed rgba(255, 255, 255, .05);
@@ -337,6 +281,7 @@
             background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01));
             border: 1px solid var(--border);
             transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed);
+            cursor: pointer;
         }
 
         .project:hover {
@@ -398,6 +343,61 @@
             color: var(--muted);
         }
 
+        /* Reveal animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 500ms ease, transform 500ms ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-soft);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            max-width: 720px;
+            width: min(94%, 720px);
+            max-height: 80vh;
+            overflow: auto;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .modal-close {
+            cursor: pointer;
+        }
+
         /* Responsive */
         @media (max-width: 950px) {
             .hero-grid {
@@ -431,66 +431,33 @@
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width:640px) {
             .grid {
                 grid-template-columns: 1fr;
             }
 
             .kpis {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: 1fr;
             }
         }
-
-        /* Utilities */
-        .sr {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 500ms ease, transform 500ms ease;
-        }
-
-        .fade-in.appear {
-            opacity: 1;
-            transform: none;
-        }
     </style>
-    <link rel="icon" href="assets/favicon.png" />
-    <meta name="theme-color" content="#0f1115" />
 </head>
 
 <body>
     <header>
         <div class="container nav">
             <a href="#" class="brand"><span class="logo" aria-hidden="true"></span> Evion Jimerson</a>
-            <button class="btn menu-toggle" aria-controls="primary-nav" aria-expanded="false"
-                style="display:none">Menu</button>
+            <button class="btn menu-toggle" aria-controls="primary-nav" aria-expanded="false">Menu</button>
             <nav>
                 <ul id="primary-nav" role="menubar">
                     <li><a href="#about" role="menuitem">About</a></li>
-                    <li class="menu" aria-expanded="false">
-                        <a href="#projects" class="menu-btn" aria-haspopup="true" aria-expanded="false" role="menuitem"
-                            aria-controls="proj-menu">Projects <span class="chev"></span></a>
-                        <div id="proj-menu" class="menu-panel" role="menu" aria-label="Project filters">
-                            <a href="#projects" data-filter="all" role="menuitem">All</a>
-                            <a href="#projects" data-filter="software" role="menuitem">Software Dev</a>
-                            <a href="#projects" data-filter="security" role="menuitem">Cybersecurity</a>
-                            <a href="#projects" data-filter="ui" role="menuitem">UI/UX</a>
-                        </div>
-                    </li>
+                    <li><a href="#projects" role="menuitem">Projects</a></li>
                     <li><a href="#experience" role="menuitem">Experience</a></li>
                     <li><a href="#skills" role="menuitem">Skills</a></li>
                     <li><a href="#contact" role="menuitem">Contact</a></li>
                 </ul>
             </nav>
-            <a class="btn primary" href="#resume">Resume</a>
+            <a class="btn primary" href="assets/resume_evion_jimerson.pdf" download>Resume</a>
         </div>
     </header>
 
@@ -499,34 +466,32 @@
             <span class="pill fade-in">Junior @ University of Arkansas • Software Dev & Cybersecurity</span>
             <div class="hero-grid">
                 <div>
-                    <h1 class="fade-in">Building clean, secure, and human‑friendly software.</h1>
-                    <p class="lead fade-in">I’m Evion Jimerson — a junior Computer Science student focused on full‑stack
-                        development and cybersecurity. I like shipping simple, reliable features with a polished UI.</p>
+                    <h1 class="fade-in">I build clean, secure software that's easy to use.</h1>
+                    <p class="lead fade-in">I'm Evion Jimerson, a junior Computer Science student focused on full-stack
+                        development and cybersecurity. I like building reliable features with a polished UI while
+                        reinforcing my coding skills and fine-tuning projects.</p>
                     <div class="fade-in" style="display:flex; gap:10px; flex-wrap:wrap;">
                         <a class="btn primary" href="#projects">View Projects</a>
                         <a class="btn" href="#contact">Get in Touch</a>
                     </div>
                     <div class="kpis fade-in">
                         <div class="kpi">
-                            <div class="num">+8</div>
-                            <div class="lbl">Projects shipped</div>
+                            <div class="num">Coursework</div>
+                            <div class="lbl">Programming Paradigms • OS • Computer Org</div>
                         </div>
                         <div class="kpi">
-                            <div class="num">3</div>
-                            <div class="lbl">Hackathons</div>
-                        </div>
-                        <div class="kpi">
-                            <div class="num">NVIDIA</div>
-                            <div class="lbl">Summer Bridge</div>
+                            <div class="num">Goal</div>
+                            <div class="lbl">Summer 2026 Internship</div>
                         </div>
                     </div>
                 </div>
                 <div class="card fade-in">
                     <h3 style="margin:0 0 12px">Quick Highlights</h3>
-                    <ul style="margin:0; padding-left: 18px; color: var(--muted)">
+                    <ul style="margin:0; padding-left:18px; color:var(--muted)">
                         <li>Secure file-sharing app with auth, group sharing, and chat.</li>
-                        <li>Coursework in OS, computer org, and engineering stats.</li>
-                        <li>Interested in 2026 internships (Apple, NVIDIA, etc.).</li>
+                        <li>Coursework: Programming Paradigms, Operating Systems, Computer Organization, Engineering
+                            Statistics.</li>
+                        <li>Actively seeking a Summer 2026 software/cybersecurity internship.</li>
                     </ul>
                 </div>
             </div>
@@ -567,35 +532,38 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="grid">
                     <!-- Project 1 -->
-                    <article class="project fade-in" data-cat="software">
+                    <article class="project fade-in" data-cat="software" data-id="secure-file">
                         <div class="thumb" aria-hidden="true"></div>
                         <div class="content">
                             <h3>Secure File App</h3>
-                            <p class="muted">Flask + React app for sharing files in groups with notes, email alerts, and
-                                simple chat.</p>
+                            <p class="muted">Flask + React app for group file sharing with auth, notes, and simple chat.
+                                Focused on safe flows and clear UI.</p>
                             <div class="tags"><span class="tag">Flask</span><span class="tag">React</span><span
                                     class="tag">JWT</span></div>
                         </div>
                     </article>
+
                     <!-- Project 2 -->
-                    <article class="project fade-in" data-cat="security">
+                    <article class="project fade-in" data-cat="security" data-id="vuln-scanner">
                         <div class="thumb" aria-hidden="true"></div>
                         <div class="content">
                             <h3>Vuln Scanner Lite</h3>
-                            <p class="muted">Beginner‑friendly Python tool that scans a folder for risky file perms,
-                                secrets, and outdated deps.</p>
+                            <p class="muted">Python CLI that flags risky permissions, secret tokens, and outdated deps.
+                                Built to practice secure coding habits.</p>
                             <div class="tags"><span class="tag">Python</span><span class="tag">Security</span><span
                                     class="tag">CLI</span></div>
                         </div>
                     </article>
+
                     <!-- Project 3 -->
-                    <article class="project fade-in" data-cat="ui">
+                    <article class="project fade-in" data-cat="ui" data-id="portfolio">
                         <div class="thumb" aria-hidden="true"></div>
                         <div class="content">
                             <h3>Portfolio v2</h3>
-                            <p class="muted">This site: accessible nav, dropdown filters, subtle animations, and
+                            <p class="muted">This site: accessible nav, dropdown filters, smooth transitions, and
                                 responsive layout.</p>
                             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
                                     class="tag">JS</span></div>
@@ -604,6 +572,18 @@
                 </div>
             </div>
         </section>
+
+        <!-- Project Modal -->
+        <div id="project-modal" class="modal" aria-hidden="true">
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal-header">
+                    <h3 id="modal-title" style="margin:0;">Project</h3>
+                    <button class="btn small modal-close" id="modal-close" aria-label="Close">Close</button>
+                </div>
+                <p id="modal-desc" class="muted" style="margin-top:0"></p>
+                <div id="modal-details"></div>
+            </div>
+        </div>
 
         <section id="experience">
             <div class="container">
@@ -617,7 +597,7 @@
                             <h4>NVIDIA Summer Bridge — Participant</h4>
                             <small>Summer 2025 • Remote</small>
                             <p class="muted">Focused on foundations for AI/ML and strong software engineering habits;
-                                collaborated on mini‑projects and code reviews.</p>
+                                collaborated on mini-projects and code reviews.</p>
                         </div>
                         <div><span class="tag">AI/ML</span></div>
                     </div>
@@ -625,8 +605,8 @@
                         <div>
                             <h4>University Projects — CS Coursework</h4>
                             <small>2024–2025 • Fayetteville, AR</small>
-                            <p class="muted">Operating Systems, Computer Organization, and Statistics projects with
-                                reproducible reports and diagrams.</p>
+                            <p class="muted">Programming Paradigms, Operating Systems, Computer Organization, and
+                                Engineering Statistics projects with reproducible reports and diagrams.</p>
                         </div>
                         <div><span class="tag">Academics</span></div>
                     </div>
@@ -641,11 +621,11 @@
                     <span class="muted">A little background</span>
                 </div>
                 <div class="card fade-in">
-                    <p>I’m a junior studying Computer Science at the University of Arkansas. I enjoy building full‑stack
+                    <p>I’m a junior studying Computer Science at the University of Arkansas. I enjoy building full-stack
                         apps with a focus on clean UI and practical features. I’m also growing in cybersecurity and like
                         finding simple ways to make apps safer by default.</p>
-                    <p>Outside of classes, I’ve helped small local businesses and I’m active in tech communities like
-                        NSBE. I’m preparing for 2026 internships and leveling up my projects to be interview‑ready.</p>
+                    <p>I'm preparing for Summer 2026 internships while reinforcing my coding skills and fine-tuning my
+                        projects.</p>
                 </div>
             </div>
         </section>
@@ -657,7 +637,7 @@
                     <span class="muted">Let’s connect</span>
                 </div>
                 <div class="card fade-in">
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! I\'ll be in touch.');">
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! I\\'ll be in touch.');">
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                             <label> Name<br><input required type="text" placeholder="Your name" /></label>
                             <label> Email<br><input required type="email" placeholder="you@example.com" /></label>
@@ -689,7 +669,7 @@
     </footer>
 
     <script>
-        // Year
+        // Footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Mobile menu toggle
@@ -697,25 +677,31 @@
         const primaryNav = document.getElementById('primary-nav');
         const mq = window.matchMedia('(max-width: 950px)');
         function updateMenuVisibility() {
-            if (mq.matches) { menuToggle.style.display = 'inline-flex'; } else { menuToggle.style.display = 'none'; primaryNav.classList.remove('open'); }
+            if (mq.matches) { menuToggle.style.display = 'inline-flex'; }
+            else { menuToggle.style.display = 'none'; primaryNav.classList.remove('open'); }
         }
         updateMenuVisibility();
         mq.addEventListener('change', updateMenuVisibility);
-        menuToggle.addEventListener('click', () => primaryNav.classList.toggle('open'));
+        menuToggle.addEventListener('click', () => {
+            const open = primaryNav.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
 
-        // Accessible dropdown
-        const menu = document.querySelector('.menu');
-        const menuBtn = document.querySelector('.menu-btn');
-        const menuPanel = document.querySelector('.menu-panel');
-        function setExpanded(state) {
-            menu.setAttribute('aria-expanded', state);
-            menuBtn.setAttribute('aria-expanded', state);
-        }
-        menuBtn.addEventListener('click', (e) => { e.preventDefault(); setExpanded(menu.getAttribute('aria-expanded') !== 'true'); });
-        document.addEventListener('click', (e) => { if (!menu.contains(e.target)) setExpanded('false'); });
-        menuBtn.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded('false'); });
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function (e) {
+            const id = this.getAttribute('href').slice(1);
+            if (!id) return;
+            const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
+            if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        }));
 
-        // Filter projects from dropdown or select
+        // Reveal on scroll (for .fade-in)
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('appear'); });
+        }, { threshold: .14 });
+        document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+        // Filter projects
         const filterSelect = document.getElementById('filter');
         const projectCards = [...document.querySelectorAll('.project')];
         function applyFilter(value) {
@@ -724,22 +710,104 @@
                 card.style.display = show ? '' : 'none';
             });
         }
-        filterSelect.addEventListener('change', (e) => applyFilter(e.target.value));
-        menuPanel.querySelectorAll('[data-filter]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); const v = a.getAttribute('data-filter'); filterSelect.value = v; applyFilter(v); setExpanded('false'); }));
+        if (filterSelect) filterSelect.addEventListener('change', (e) => applyFilter(e.target.value));
 
-        // Smooth scroll for same-page links
-        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function (e) {
-            const id = this.getAttribute('href').slice(1);
-            if (!id) return;
-            const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
-            if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        }));
+        // Project modal content
+        const PROJECTS = {
+            'secure-file': {
+                title: 'Secure File App',
+                desc: 'Flask + React app for sharing files safely in small groups with notes, email alerts, and simple chat.',
+                details: `
+          <h4>What I built</h4>
+          <ul>
+            <li>JWT-based login, role-based access for groups, and upload/download with size/type checks.</li>
+            <li>File notes with timestamps, and a lightweight chat per group.</li>
+            <li>Email notifications on invites and new uploads.</li>
+          </ul>
+          <h4>How I built it</h4>
+          <ul>
+            <li><strong>Backend:</strong> Flask blueprints, SQL schema for users/groups/files, hashed passwords.</li>
+            <li><strong>Frontend:</strong> React components with fetch wrappers; responsive cards and modals.</li>
+            <li><strong>Security:</strong> input validation, JWT expiry/refresh, least-privilege queries.</li>
+          </ul>
+          <h4>What I learned</h4>
+          <ul>
+            <li>Designing clean REST endpoints and connecting React to Flask.</li>
+            <li>Balancing usability with safety (file type checks, clear error states).</li>
+          </ul>
+        `
+            },
+            'vuln-scanner': {
+                title: 'Vuln Scanner Lite',
+                desc: 'Beginner-friendly Python CLI that flags risky file permissions, secrets in text, and outdated deps.',
+                details: `
+          <h4>What I built</h4>
+          <ul>
+            <li>Scans a folder and reports findings with file paths and quick tips to fix.</li>
+            <li>Checks for 600/777 perms, common secret patterns, and <code>requirements.txt</code> versions.</li>
+          </ul>
+          <h4>How I built it</h4>
+          <ul>
+            <li>Python <code>os</code>/<code>pathlib</code>/<code>stat</code> for traversal & permissions.</li>
+            <li>Regex for API key patterns; optional subprocess call to <code>pip</code> to compare versions.</li>
+          </ul>
+          <h4>What I learned</h4>
+          <ul>
+            <li>Automating small security checks that developers can run locally.</li>
+            <li>Next steps: integrate with pre-commit and add JSON output.</li>
+          </ul>
+        `
+            },
+            'portfolio': {
+                title: 'Portfolio v2',
+                desc: 'This website — accessible nav, dropdown filters, smooth transitions, and responsive layout.',
+                details: `
+          <h4>What I built</h4>
+          <ul>
+            <li>Sticky header with accessible dropdown and keyboard/ARIA support.</li>
+            <li>Project filtering, smooth scroll, and scroll-reveal animations.</li>
+          </ul>
+          <h4>How I built it</h4>
+          <ul>
+            <li>Vanilla HTML/CSS/JS with CSS variables, grid/flex, and IntersectionObserver.</li>
+            <li>Responsive design tested across desktop and mobile breakpoints.</li>
+          </ul>
+          <h4>What I learned</h4>
+          <ul>
+            <li>The value of small UI details and clean structure for readability.</li>
+          </ul>
+        `
+            }
+        };
 
-        // Reveal on scroll
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('appear'); });
-        }, { threshold: .14 });
-        document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+        // Modal wiring
+        const modal = document.getElementById('project-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalDetails = document.getElementById('modal-details');
+        const modalClose = document.getElementById('modal-close');
+
+        function openModal(id) {
+            const p = PROJECTS[id];
+            if (!p) return;
+            modalTitle.textContent = p.title;
+            modalDesc.textContent = p.desc;
+            modalDetails.innerHTML = p.details;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        document.querySelectorAll('.project').forEach(card => {
+            card.addEventListener('click', () => openModal(card.dataset.id));
+        });
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 
