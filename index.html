@@ -1,89 +1,746 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Evion Jimerson — Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
+    <meta name="description"
+        content="Portfolio of Evion Jimerson — Junior CS student focusing on software engineering & cybersecurity." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Earthy, minimal palette */
+            --bg: #0f1115;
+            /* near-black */
+            --bg-soft: #141821;
+            /* soft panel */
+            --text: #e5e7eb;
+            /* light text */
+            --muted: #a7b0be;
+            /* muted text */
+            --brand: #7bd389;
+            /* sage/green */
+            --brand-2: #9bb8ed;
+            /* slate blue accent */
+            --accent: #f0d27a;
+            /* warm sand */
+            --border: #232838;
+            /* border */
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius: 16px;
+            --radius-sm: 12px;
+            --radius-lg: 24px;
+            --maxw: 1150px;
+            --speed: 250ms;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background: radial-gradient(1200px 800px at 80% -10%, rgba(123, 211, 137, 0.12), transparent 60%),
+                radial-gradient(900px 600px at -10% 10%, rgba(155, 184, 237, 0.10), transparent 55%),
+                var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(92%, var(--maxw));
+            margin-inline: auto;
+        }
+
+        /* Header/Nav */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            background: linear-gradient(to bottom, rgba(15, 17, 21, .9), rgba(15, 17, 21, .6));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: .3px;
+        }
+
+        .logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: 0 6px 18px rgba(123, 211, 137, .25);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            padding: 10px 12px;
+            border-radius: 10px;
+            color: var(--muted);
+            font-weight: 500;
+            transition: color var(--speed), background var(--speed), transform var(--speed);
+        }
+
+        nav a:hover {
+            color: var(--text);
+            background: rgba(155, 184, 237, .12);
+            transform: translateY(-1px);
+        }
+
+        /* Dropdown */
+        .menu {
+            position: relative;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .chev {
+            width: 10px;
+            height: 10px;
+            border: solid var(--muted);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            transition: transform var(--speed);
+        }
+
+        .menu[aria-expanded="true"] .chev {
+            transform: rotate(-135deg);
+        }
+
+        .menu-panel {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            min-width: 240px;
+            padding: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity var(--speed), transform var(--speed);
+        }
+
+        .menu[aria-expanded="true"] .menu-panel {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .menu-panel a {
+            display: block;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--text);
+        }
+
+        .menu-panel a:hover {
+            background: rgba(123, 211, 137, .12);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .00));
+            transition: transform var(--speed), box-shadow var(--speed), background var(--speed), border-color var(--speed);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+            border-color: rgba(123, 211, 137, .50);
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, rgba(123, 211, 137, .25), rgba(155, 184, 237, .20));
+            border-color: rgba(123, 211, 137, .55);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 64px 0 40px;
+            position: relative;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4.5vw, 52px);
+            line-height: 1.08;
+            margin: 14px 0 10px;
+            letter-spacing: .2px;
+        }
+
+        .lead {
+            font-size: clamp(16px, 2.1vw, 18px);
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .kpi {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            text-align: center;
+        }
+
+        .kpi .num {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: .3px;
+        }
+
+        .kpi .lbl {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Section */
+        section {
+            padding: 60px 0;
+            border-top: 1px dashed rgba(255, 255, 255, .05);
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .sec-title {
+            font-size: 22px;
+            letter-spacing: .3px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* Skills */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .03);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Projects */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .project {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .01));
+            border: 1px solid var(--border);
+            transition: transform var(--speed), box-shadow var(--speed), border-color var(--speed);
+        }
+
+        .project:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: rgba(123, 211, 137, .55);
+        }
+
+        .project .thumb {
+            height: 160px;
+            background: linear-gradient(120deg, rgba(123, 211, 137, .15), rgba(155, 184, 237, .15));
+        }
+
+        .project .content {
+            padding: 16px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+
+        /* Experience */
+        .timeline {
+            display: grid;
+            gap: 14px;
+        }
+
+        .item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .item h4 {
+            margin: 0 0 6px;
+        }
+
+        .item small {
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0 60px;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 950px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 64px;
+                right: 4%;
+                width: min(92%, 320px);
+                flex-direction: column;
+                background: var(--bg-soft);
+                border: 1px solid var(--border);
+                padding: 8px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpis {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* Utilities */
+        .sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 500ms ease, transform 500ms ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+    <link rel="icon" href="assets/favicon.png" />
+    <meta name="theme-color" content="#0f1115" />
 </head>
 
 <body>
-    <header class="nav">
-        <div class="container">
-            <div class="brand">Evion Jimerson</div>
+    <header>
+        <div class="container nav">
+            <a href="#" class="brand"><span class="logo" aria-hidden="true"></span> Evion Jimerson</a>
+            <button class="btn menu-toggle" aria-controls="primary-nav" aria-expanded="false"
+                style="display:none">Menu</button>
             <nav>
-                <a href="#projects">Projects</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
-                <a class="btn" href="Evion_Jimerson_Resume.pdf" target="_blank">Resume</a>
-                <button id="themeToggle" class="icon-btn">🌙</button>
+                <ul id="primary-nav" role="menubar">
+                    <li><a href="#about" role="menuitem">About</a></li>
+                    <li class="menu" aria-expanded="false">
+                        <a href="#projects" class="menu-btn" aria-haspopup="true" aria-expanded="false" role="menuitem"
+                            aria-controls="proj-menu">Projects <span class="chev"></span></a>
+                        <div id="proj-menu" class="menu-panel" role="menu" aria-label="Project filters">
+                            <a href="#projects" data-filter="all" role="menuitem">All</a>
+                            <a href="#projects" data-filter="software" role="menuitem">Software Dev</a>
+                            <a href="#projects" data-filter="security" role="menuitem">Cybersecurity</a>
+                            <a href="#projects" data-filter="ui" role="menuitem">UI/UX</a>
+                        </div>
+                    </li>
+                    <li><a href="#experience" role="menuitem">Experience</a></li>
+                    <li><a href="#skills" role="menuitem">Skills</a></li>
+                    <li><a href="#contact" role="menuitem">Contact</a></li>
+                </ul>
             </nav>
+            <a class="btn primary" href="#resume">Resume</a>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Cybersecurity-Minded Full-Stack Engineer</h1>
-            <p>Focused on secure systems, front- and back-end development, and practical problem solving. NVIDIA Ignite
-                alum.</p>
-        </div>
-    </section>
+    <main>
+        <section class="hero container">
+            <span class="pill fade-in">Junior @ University of Arkansas • Software Dev & Cybersecurity</span>
+            <div class="hero-grid">
+                <div>
+                    <h1 class="fade-in">Building clean, secure, and human‑friendly software.</h1>
+                    <p class="lead fade-in">I’m Evion Jimerson — a junior Computer Science student focused on full‑stack
+                        development and cybersecurity. I like shipping simple, reliable features with a polished UI.</p>
+                    <div class="fade-in" style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <a class="btn primary" href="#projects">View Projects</a>
+                        <a class="btn" href="#contact">Get in Touch</a>
+                    </div>
+                    <div class="kpis fade-in">
+                        <div class="kpi">
+                            <div class="num">+8</div>
+                            <div class="lbl">Projects shipped</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="num">3</div>
+                            <div class="lbl">Hackathons</div>
+                        </div>
+                        <div class="kpi">
+                            <div class="num">NVIDIA</div>
+                            <div class="lbl">Summer Bridge</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card fade-in">
+                    <h3 style="margin:0 0 12px">Quick Highlights</h3>
+                    <ul style="margin:0; padding-left: 18px; color: var(--muted)">
+                        <li>Secure file-sharing app with auth, group sharing, and chat.</li>
+                        <li>Coursework in OS, computer org, and engineering stats.</li>
+                        <li>Interested in 2026 internships (Apple, NVIDIA, etc.).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="grid">
-                <article class="card">
-                    <h3>NVIDIA-Style GPU Dashboard</h3>
-                    <p>Built a JWT-protected React + Flask dashboard with Docker, showing live GPU stats.</p>
-                </article>
-                <article class="card">
-                    <h3>Network Security Tool</h3>
-                    <p>Flask + React tool that checks HTTP security headers, DNS, and top-10 ports.</p>
-                </article>
-                <article class="card">
-                    <h3>Portfolio Website</h3>
-                    <p>This responsive site built with HTML, CSS, and JavaScript. Hosted on GitHub Pages.</p>
-                </article>
+        <section id="skills">
+            <div class="container">
+                <div class="sec-head">
+                    <h2 class="sec-title">Skills</h2>
+                    <span class="muted">Confident, growing, and practicing daily.</span>
+                </div>
+                <div class="chips fade-in">
+                    <span class="chip">Python</span>
+                    <span class="chip">Java</span>
+                    <span class="chip">C++</span>
+                    <span class="chip">HTML/CSS/JS</span>
+                    <span class="chip">Flask</span>
+                    <span class="chip">React (basic)</span>
+                    <span class="chip">SQL</span>
+                    <span class="chip">Git/GitHub</span>
+                    <span class="chip">Linux/WSL</span>
+                    <span class="chip">Cybersecurity (foundations)</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="sec-head">
+                    <h2 class="sec-title">Projects</h2>
+                    <div style="display:flex; gap:8px; align-items:center">
+                        <label class="muted" for="filter">Filter:</label>
+                        <select id="filter" class="btn" style="padding:8px 10px;">
+                            <option value="all">All</option>
+                            <option value="software">Software Dev</option>
+                            <option value="security">Cybersecurity</option>
+                            <option value="ui">UI/UX</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid">
+                    <!-- Project 1 -->
+                    <article class="project fade-in" data-cat="software">
+                        <div class="thumb" aria-hidden="true"></div>
+                        <div class="content">
+                            <h3>Secure File App</h3>
+                            <p class="muted">Flask + React app for sharing files in groups with notes, email alerts, and
+                                simple chat.</p>
+                            <div class="tags"><span class="tag">Flask</span><span class="tag">React</span><span
+                                    class="tag">JWT</span></div>
+                        </div>
+                    </article>
+                    <!-- Project 2 -->
+                    <article class="project fade-in" data-cat="security">
+                        <div class="thumb" aria-hidden="true"></div>
+                        <div class="content">
+                            <h3>Vuln Scanner Lite</h3>
+                            <p class="muted">Beginner‑friendly Python tool that scans a folder for risky file perms,
+                                secrets, and outdated deps.</p>
+                            <div class="tags"><span class="tag">Python</span><span class="tag">Security</span><span
+                                    class="tag">CLI</span></div>
+                        </div>
+                    </article>
+                    <!-- Project 3 -->
+                    <article class="project fade-in" data-cat="ui">
+                        <div class="thumb" aria-hidden="true"></div>
+                        <div class="content">
+                            <h3>Portfolio v2</h3>
+                            <p class="muted">This site: accessible nav, dropdown filters, subtle animations, and
+                                responsive layout.</p>
+                            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span
+                                    class="tag">JS</span></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <div class="sec-head">
+                    <h2 class="sec-title">Experience</h2>
+                    <span class="muted">Recent roles & activities</span>
+                </div>
+                <div class="timeline fade-in">
+                    <div class="item">
+                        <div>
+                            <h4>NVIDIA Summer Bridge — Participant</h4>
+                            <small>Summer 2025 • Remote</small>
+                            <p class="muted">Focused on foundations for AI/ML and strong software engineering habits;
+                                collaborated on mini‑projects and code reviews.</p>
+                        </div>
+                        <div><span class="tag">AI/ML</span></div>
+                    </div>
+                    <div class="item">
+                        <div>
+                            <h4>University Projects — CS Coursework</h4>
+                            <small>2024–2025 • Fayetteville, AR</small>
+                            <p class="muted">Operating Systems, Computer Organization, and Statistics projects with
+                                reproducible reports and diagrams.</p>
+                        </div>
+                        <div><span class="tag">Academics</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="sec-head">
+                    <h2 class="sec-title">About</h2>
+                    <span class="muted">A little background</span>
+                </div>
+                <div class="card fade-in">
+                    <p>I’m a junior studying Computer Science at the University of Arkansas. I enjoy building full‑stack
+                        apps with a focus on clean UI and practical features. I’m also growing in cybersecurity and like
+                        finding simple ways to make apps safer by default.</p>
+                    <p>Outside of classes, I’ve helped small local businesses and I’m active in tech communities like
+                        NSBE. I’m preparing for 2026 internships and leveling up my projects to be interview‑ready.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="sec-head">
+                    <h2 class="sec-title">Contact</h2>
+                    <span class="muted">Let’s connect</span>
+                </div>
+                <div class="card fade-in">
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! I\'ll be in touch.');">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <label> Name<br><input required type="text" placeholder="Your name" /></label>
+                            <label> Email<br><input required type="email" placeholder="you@example.com" /></label>
+                        </div>
+                        <label style="display:block; margin-top: 12px;"> Message<br><textarea required rows="5"
+                                placeholder="Tell me about your project or opportunity..."></textarea></label>
+                        <div style="margin-top: 12px; display:flex; gap:10px; align-items:center;">
+                            <button class="btn primary" type="submit">Send</button>
+                            <a class="btn" href="assets/resume_evion_jimerson.pdf" download>Download Resume (PDF)</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container"
+            style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <small>© <span id="year"></span> Evion Jimerson. All rights reserved.</small>
+            <div style="display:flex; gap:10px;">
+                <a href="https://github.com/evion-jimerson" class="tag" aria-label="GitHub (opens in new tab)"
+                    target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/evion-jimerson-a9004827a/" class="tag"
+                    aria-label="LinkedIn (opens in new tab)" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:evionj@uark.edu" class="tag" aria-label="Send email">Email</a>
             </div>
         </div>
-    </section>
-
-    <section id="experience" class="section">
-        <div class="container">
-            <h2>Experience</h2>
-            <p><b>NVIDIA Ignite — Summer Bridge (2024):</b> Learned secure API design, Dockerization, and full-stack
-                integration. Built projects combining React + Flask.</p>
-            <p><b>Dollar General — Assistant Manager:</b> Led daily operations, improved inventory accuracy by 12%,
-                managed a team, and ensured smooth workflows.</p>
-        </div>
-    </section>
-
-    <section id="skills" class="section">
-        <div class="container">
-            <h2>Skills & Coursework</h2>
-            <p><b>Technical:</b> React, Flask, JWT, Docker, Git, Networking Basics</p>
-            <p><b>Languages:</b> Python, JavaScript, HTML, CSS</p>
-            <p><b>Relevant Coursework:</b> Programming Paradigms, Operating Systems, Engineering Probability &
-                Statistics</p>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-            <p>GitHub: <a href="https://github.com/yourgithub" target="_blank">github.com/yourgithub</a></p>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">© <span id="y"></span> Evion Jimerson</div>
     </footer>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const primaryNav = document.getElementById('primary-nav');
+        const mq = window.matchMedia('(max-width: 950px)');
+        function updateMenuVisibility() {
+            if (mq.matches) { menuToggle.style.display = 'inline-flex'; } else { menuToggle.style.display = 'none'; primaryNav.classList.remove('open'); }
+        }
+        updateMenuVisibility();
+        mq.addEventListener('change', updateMenuVisibility);
+        menuToggle.addEventListener('click', () => primaryNav.classList.toggle('open'));
+
+        // Accessible dropdown
+        const menu = document.querySelector('.menu');
+        const menuBtn = document.querySelector('.menu-btn');
+        const menuPanel = document.querySelector('.menu-panel');
+        function setExpanded(state) {
+            menu.setAttribute('aria-expanded', state);
+            menuBtn.setAttribute('aria-expanded', state);
+        }
+        menuBtn.addEventListener('click', (e) => { e.preventDefault(); setExpanded(menu.getAttribute('aria-expanded') !== 'true'); });
+        document.addEventListener('click', (e) => { if (!menu.contains(e.target)) setExpanded('false'); });
+        menuBtn.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded('false'); });
+
+        // Filter projects from dropdown or select
+        const filterSelect = document.getElementById('filter');
+        const projectCards = [...document.querySelectorAll('.project')];
+        function applyFilter(value) {
+            projectCards.forEach(card => {
+                const show = value === 'all' || card.dataset.cat === value;
+                card.style.display = show ? '' : 'none';
+            });
+        }
+        filterSelect.addEventListener('change', (e) => applyFilter(e.target.value));
+        menuPanel.querySelectorAll('[data-filter]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); const v = a.getAttribute('data-filter'); filterSelect.value = v; applyFilter(v); setExpanded('false'); }));
+
+        // Smooth scroll for same-page links
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', function (e) {
+            const id = this.getAttribute('href').slice(1);
+            if (!id) return;
+            const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
+            if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        }));
+
+        // Reveal on scroll
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('appear'); });
+        }, { threshold: .14 });
+        document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+    </script>
 </body>
 
 </html>
